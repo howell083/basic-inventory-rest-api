@@ -1,0 +1,39 @@
+<form name="form2" method="POST" action="/invent/<%= data.id %>?_method=PUT">
+    
+    <div class="form-group">
+      
+        <label for="itemType">What type of item: </label>
+        <select id="itemType" name="itemType" class="form-control mx-sm-3" required>
+          <% 
+          var options = [ "Box", "Tote", "Large Item/Furniture" ];
+          for (let i = 0; i < options.length; i++){
+            let selected = ( data.type == options[i] ) ? "selected" : "";
+            %><option value="<%=options[ i ] %>" <%=selected %>><%=options[i] %></option><%
+          }
+          %> 
+         
+        </select>
+        <label for="conName">Name: </label>
+        <input value="<%= data.label %>" id="conName" name="conName" type="text" class="form-control mx-sm-3" required>
+        <br>
+        <label for="conDesc">Description: </label>
+        <input value="<%= data.descript %> " id="conDesc" name="conDesc" type="text" class="form-control mx-sm-3" required>
+        <br>
+        <label for="conLoc">Location: </label>
+        <select id="conLoc" name="conLoc" class="form-control mx-sm-3" required>
+            
+          <% 
+          var options = [ "Storage Unit", "Garage", "Attic", "Basement", "Stroage Closet", "Other" ];
+          for (let i = 0; i < options.length; i++){
+            let selected = ( data.loc == options[i] ) ? "selected" : "";
+            %><option value="<%=options[ i ] %>" <%=selected %>><%=options[i] %></option><%
+          }
+          %> 
+
+          
+        </select>
+        <br>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Changes</button>
+  </form>   

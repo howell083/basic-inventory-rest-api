@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %> 
+</head>
+<body class="container">
+<header>
+    <%- include('../partials/header'); %> 
+</header>
+
+<main>
+<div class="row">
+    <div class="col-sm-8">
+        <h1>Biscuit scam</h1>
+        <p>Welcome to Sapporo. Have some biscuits :)</p>
+        <div class="jumbotron">
+          <% if(inve.length === 0 ) { %>
+            <h1>EMPTY</h1>
+          <% } else { %>
+            <% for(var i = 0; i < inve.length; i++) { %> 
+            <p><%= inve[i].label %> <a href="<%= `/invent/${inve[i].id}/edit`  %> "> EDIT </a>
+                <form id="delete" method="POST" action="/invent/<%= inve[i].id %>?_method=DELETE">
+                 <input type="hidden" name="_method" value="delete">
+                 <button type="submit">
+                    <a> DELETE </a></button></form></p>
+            <% } %> 
+          <% } %>  
+            
+        </div>
+    </div>
+    
+    <div class="col-sm-4">
+        <div class="well">
+            <h3>This be yar sidebar</h3>
+            <%- include('../partials/invform'); %>
+        </div>
+    </div>
+</div>
+
+
+</main>
+<footer>
+    <%- include('../partials/footer'); %> 
+</footer>
+
+</body>
+
+</html>
