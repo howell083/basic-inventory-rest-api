@@ -16,7 +16,6 @@ app.get('/', function (req, res) {
 });
 
 app.get('/invent', function (req, res) {
-
     res.render('pages/invent', {
         inve: inve
     });
@@ -59,9 +58,7 @@ app.put('/invent/:id', (req, res) => {
 })
 
 app.delete('/invent/:id', function (req, res) {
-
     const found = inve.some(items => items.id === req.params.id);
-    console.log(found + ": " + req.params.id);
     if (!found) {
         res.status(400)
     } else {
