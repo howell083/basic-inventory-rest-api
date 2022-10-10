@@ -11,18 +11,17 @@ app.use(methodOverride('_method'));
 
 app.set('view engine', 'ejs');
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
     res.render('pages/index');
 });
 
-app.get('/invent', function (req, res) {
+app.get('/invent', (req, res) => {
     res.render('pages/invent', {
         inve: inve
     });
-
 });
 
-app.post('/invent', function (req, res) {
+app.post('/invent', (req, res) => {
     const newid = nanoid(10);
     const item = {
         id: newid,
@@ -35,10 +34,9 @@ app.post('/invent', function (req, res) {
     res.render('pages/invent', {
         inve: inve
     });
-
 });
 
-app.get('/invent/:id/edit', function (req, res) {
+app.get('/invent/:id/edit', (req, res) => {
     const found = inve.find(items => items.id === req.params.id);
     res.render('pages/edit', {
         data: found
@@ -57,7 +55,7 @@ app.put('/invent/:id', (req, res) => {
     })
 })
 
-app.delete('/invent/:id', function (req, res) {
+app.delete('/invent/:id', (req, res) => {
     const found = inve.some(items => items.id === req.params.id);
     if (!found) {
         res.status(400)
