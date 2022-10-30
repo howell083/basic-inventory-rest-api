@@ -1,4 +1,4 @@
-<form name="form2" method="POST" action="/invent">
+<form name="form2" method="POST" action="/items">
     
     <div class="form-group">
       <!-- 
@@ -24,7 +24,7 @@
         <br>
         <label for="conLoc">Location: </label>
         <select id="conLoc" name="conLoc" class="form-control mx-sm-3" required>
-            <option value="Storage">Storage Unit</option>
+            <option value="Storage Unit">Storage Unit</option>
             <option value="Garage">Garage</option>
             <option value="Attic">Attic</option>
             <option value="Basement">Basement</option>
@@ -35,4 +35,9 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Add Item</button>
+    
+    <a href="/items/" ><button onclick="clearButton()" type="button" class="btn btn-primary">Clear Inv</button></a>
+            <script>
+                function clearButton(){localStorage.clear();}
+            </script>
   </form>   
