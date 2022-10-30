@@ -2,10 +2,7 @@
     
     <div class="form-group">
         <% const editItemId = data %>
-        <% console.log('ItemId: ' + editItemId) %>
-        <script>
-          console.log( <%- JSON.stringify(data) %> )
-        </script>
+
         <label for="itemType">What type of item: </label>
         <select id="itemType" name="itemType" class="form-control mx-sm-3" required>
           <% 
@@ -28,7 +25,7 @@
         <select id="conLoc" name="conLoc" class="form-control mx-sm-3" required>
             
           <% 
-          var options = [ "Storage Unit", "Garage", "Attic", "Basement", "Stroage Closet", "Other" ];
+          var options = [ "Storage Unit", "Garage", "Attic", "Basement", "Storage Closet", "Other" ];
           for (let i = 0; i < options.length; i++){
             
             %><option value="<%=options[ i ] %>" ><%=options[i] %></option><%
@@ -40,19 +37,13 @@
         <input type="text" id="id" class="form-control mx-sm-3" name="id" value="" readonly>
         <br>
         <script>
-          const editItem = <%- JSON.stringify(data) %>;
-          const itemInfo = localStorage.getItem(editItem);
-          const itemName = JSON.parse(itemInfo);
-          const iName = itemName.label;
-          console.log(editItem);
-          console.log(itemInfo);
-          console.log(itemName);
-          console.log(itemName.id);
-          document.getElementById('id').value = itemName.id;
-          document.getElementById('conName').value = iName;
-          document.getElementById('conDesc').value = itemName.descript;
-          document.getElementById('conLoc').value = itemName.loc;
-          document.getElementById('itemType').value = itemName.type;
+          const infoParse = JSON.parse(localStorage.getItem(<%- JSON.stringify(data) %>));
+          
+          document.getElementById('id').value = infoParse.id;
+          document.getElementById('conName').value = infoParse.label;
+          document.getElementById('conDesc').value = infoParse.descript;
+          document.getElementById('conLoc').value = infoParse.loc;
+          document.getElementById('itemType').value = infoParse.type;
         </script>
     </div>
 

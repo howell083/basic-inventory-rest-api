@@ -3,23 +3,15 @@ const app = express();
 const methodOverride = require('method-override');
 const { nanoid } = require('nanoid');
 
-const inve = [];
-
-app.use(express.urlencoded({
-    extended: true
-  }));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));  
-
 app.set('view engine', 'ejs');
 
 
-// index page
 app.get('/', function(req, res) {
     res.render('pages/index');
 });
 
-
-//GET inventory page
 app.get('/items', function(req, res) {
     
     const item = undefined;
@@ -27,7 +19,15 @@ app.get('/items', function(req, res) {
     
 });
 
-//POST to inventory 
+app.get('/items/:id/edit', function(req, res) {
+    const data = req.params.id;
+    res.render('pages/edit', {
+        data
+    });
+    
+});
+
+
 app.post('/items', function(req, res) {
     
    
@@ -39,9 +39,6 @@ app.post('/items', function(req, res) {
         descript: req.body.conDesc,
         loc: req.body.conLoc
     }
-    //console.log(req.body);
-   
-    //inve.push(item);
 
     res.render('pages/items', {
         
@@ -50,22 +47,8 @@ app.post('/items', function(req, res) {
     
 });
 
-//GET edit page by item :id
-app.get('/items/:id/edit', function(req, res) {
-    const data = req.params.id;
-    res.render('pages/edit', {
-        data
-    });
-    
-});
 
-//PUT updated inventory item
 app.put('/items/:id', function(req, res){
-    //find item
-    
-    //TODO: err check
-    //TODO: validate
-    //update item
     const item = {
         id: req.body.id,
         type: req.body.itemType,
@@ -79,19 +62,5 @@ app.put('/items/:id', function(req, res){
     })
 })
 
-//DELETE inventory item
-app.delete('/items/:id', function(req, res) {
-    
-        const itemDel = req.body.id;
-
-        res.render('pages/items', {
-            itemDel
-        });
-    
-});
-
-
 
 app.listen(8080, () => console.log('Server is listening on port 8080'));
-
-
